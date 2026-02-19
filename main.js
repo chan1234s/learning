@@ -35,3 +35,63 @@ generateBtn.addEventListener('click', () => {
         lottoNumbersContainer.appendChild(numberDiv);
     });
 });
+
+// Smile Detector Logic
+const URL = "./my_model/";
+let model, labelContainer, maxPredictions;
+
+async function loadModel() {
+    const modelURL = URL + "model.json";
+    const metadataURL = URL + "metadata.json";
+    try {
+        model = await tmImage.load(modelURL, metadataURL);
+        maxPredictions = model.getTotalClasses();
+        console.log("Model loaded successfully");
+    } catch (e) {
+        console.error("Failed to load model", e);
+        document.getElementById('label-container').innerHTML = "Error: Model files not found in /my_model/";
+    }
+}
+
+const imageUpload = document.getElementById('image-upload');
+const uploadBtn = document.getElementById('upload-btn');
+const imagePreview = document.getElementById('image-preview');
+const labelContainerEl = document.getElementById('label-container');
+
+uploadBtn.addEventListener('click', () => imageUpload.click());
+
+imageUpload.addEventListener('change', async (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+
+    const reader = new FileReader();
+    reader.onload = async (event) => {
+        imagePreview.src = event.target.result;
+        imagePreview.style.display = 'block';
+        
+        if (!model) {
+            labelContainerEl.innerHTML = "Loading model...";
+            await loadModel();
+        }
+        
+        if (model) {
+            predict();
+        }
+    };
+    reader.readAsDataURL(file);
+});
+
+async function predict() {
+    const prediction = await model.predict(imagePreview);
+    labelContainerEl.innerHTML = '';
+    for (let i = 0; i < maxPredictions; i++) {
+        const classPrediction =
+            prediction[i].className + ": " + (prediction[i].probability * 100).toFixed(2) + "%";
+        const div = document.createElement('div');
+        div.innerHTML = classPrediction;
+        labelContainerEl.appendChild(div);
+    }
+}
+
+// Pre-load model
+loadModel();

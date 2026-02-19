@@ -3,8 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lotto Number Generator</title>
+    <title>Lotto & Smile Detector</title>
     <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest/dist/tf.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@teachablemachine/image@latest/dist/teachablemachine-image.min.js"></script>
 </head>
 <body> 
     <button id="theme-toggle">Dark Mode</button>
@@ -14,6 +16,18 @@
             <!-- Numbers will be generated here -->
         </div>
         <button id="generate-btn">Generate Numbers</button>
+    </div>
+
+    <div class="container smile-detector">
+        <h1>Smile Detector</h1>
+        <div class="upload-section">
+            <input type="file" id="image-upload" accept="image/*" style="display: none;">
+            <button id="upload-btn">Upload Image</button>
+        </div>
+        <div id="image-preview-container">
+            <img id="image-preview" src="#" alt="Preview" style="display: none; max-width: 100%; margin-top: 20px; border-radius: 8px;">
+        </div>
+        <div id="label-container" style="margin-top: 20px; font-weight: bold; font-size: 1.2rem;"></div>
     </div>
 
     <div class="container contact-section">
