@@ -1,3 +1,23 @@
+// Modal logic
+const privacyLink = document.getElementById('privacy-link');
+const privacyModal = document.getElementById('privacy-modal');
+const closeBtn = document.querySelector('.close');
+
+privacyLink.addEventListener('click', (e) => {
+    e.preventDefault();
+    privacyModal.style.display = 'block';
+});
+
+closeBtn.addEventListener('click', () => {
+    privacyModal.style.display = 'none';
+});
+
+window.addEventListener('click', (event) => {
+    if (event.target == privacyModal) {
+        privacyModal.style.display = 'none';
+    }
+});
+
 const generateBtn = document.getElementById('generate-btn');
 const lottoNumbersContainer = document.querySelector('.lotto-numbers');
 const themeToggle = document.getElementById('theme-toggle');

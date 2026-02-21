@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lotto & Smile Detector</title>
+    <title>Lotto Generator & AI Smile Detector | Fun Tools</title>
+    <meta name="description" content="Generate lucky lotto numbers and detect smiles using AI. A high-quality tool collection for daily fun and utility.">
     <meta name="google-adsense-account" content="ca-pub-7376269556672415">
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7376269556672415"
      crossorigin="anonymous"></script>
@@ -12,64 +13,101 @@
     <script src="https://cdn.jsdelivr.net/npm/@teachablemachine/image@latest/dist/teachablemachine-image.min.js"></script>
 </head>
 <body> 
-    <button id="theme-toggle">Dark Mode</button>
-    <div class="container">
-        <h1>Lotto Number Generator</h1>
-        <div class="lotto-numbers">
-            <!-- Numbers will be generated here -->
+    <header>
+        <nav>
+            <div class="logo">ToolBox</div>
+            <ul>
+                <li><a href="#lotto">Lotto</a></li>
+                <li><a href="#smile">Smile AI</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li><button id="theme-toggle">Dark Mode</button></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="lotto" class="container">
+            <h1>Lotto Number Generator</h1>
+            <p class="section-desc">무작위 알고리즘을 사용하여 당신의 행운의 번호를 생성하세요. 1부터 45 사이의 중복되지 않는 6개 번호를 즉시 제공합니다.</p>
+            <div class="lotto-numbers">
+                <!-- Numbers will be generated here -->
+            </div>
+            <button id="generate-btn">번호 생성하기</button>
+            <div class="info-text">
+                <h3>사용 방법</h3>
+                <p>'번호 생성하기' 버튼을 클릭하면 실시간으로 번호가 추출됩니다. 정렬된 결과를 통해 한눈에 번호를 확인하실 수 있습니다.</p>
+            </div>
+        </section>
+
+        <section id="smile" class="container smile-detector">
+            <h1>AI Smile Detector</h1>
+            <p class="section-desc">인공지능 기술을 활용하여 사진 속 미소를 감지합니다. Google의 Teachable Machine 기술이 적용되었습니다.</p>
+            <div class="upload-section">
+                <input type="file" id="image-upload" accept="image/*" style="display: none;">
+                <button id="upload-btn">사진 업로드</button>
+            </div>
+            <div id="image-preview-container">
+                <img id="image-preview" src="#" alt="미소 감지 미리보기" style="display: none; max-width: 100%; margin-top: 20px; border-radius: 8px;">
+            </div>
+            <div id="label-container" style="margin-top: 20px; font-weight: bold; font-size: 1.2rem;"></div>
+            <div class="info-text">
+                <h3>기술 안내</h3>
+                <p>본 도구는 브라우저 기반의 TensorFlow.js 라이브러리를 사용합니다. 업로드하신 이미지는 서버로 전송되지 않고 사용자의 기기에서 즉시 분석되므로 개인정보가 안전하게 보호됩니다.</p>
+            </div>
+        </section>
+
+        <section id="contact" class="container contact-section">
+            <h2>제휴 및 서비스 문의</h2>
+            <p>제안이나 문의사항이 있으시면 아래 양식을 통해 보내주세요.</p>
+            <form action="https://formspree.io/f/xdaldzal" method="POST" class="contact-form">
+                <div class="form-group">
+                    <input type="text" name="name" placeholder="이름 / 업체명" required>
+                </div>
+                <div class="form-group">
+                    <input type="email" name="_replyto" placeholder="이메일 주소" required>
+                </div>
+                <div class="form-group">
+                    <textarea name="message" placeholder="문의 내용" required></textarea>
+                </div>
+                <button type="submit" id="submit-btn">문의하기</button>
+            </form>
+        </section>
+
+        <section class="container">
+            <h2>커뮤니티</h2>
+            <div id="disqus_thread"></div>
+            <script>
+                (function() {
+                var d = document, s = d.createElement('script');
+                s.src = 'https://umjunsik-01.disqus.com/embed.js';
+                s.setAttribute('data-timestamp', +new Date());
+                (d.head || d.body).appendChild(s);
+                })();
+            </script>
+            <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="#privacy-modal" id="privacy-link">개인정보처리방침</a>
+                <a href="#terms-modal" id="terms-link">이용약관</a>
+            </div>
+            <p>&copy; 2026 ToolBox. All rights reserved.</p>
         </div>
-        <button id="generate-btn">Generate Numbers</button>
+    </footer>
+
+    <!-- Modals for Policies -->
+    <div id="privacy-modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>개인정보처리방침</h2>
+            <p>본 사이트는 Google AdSense를 사용하여 광고를 게재합니다. Google은 쿠키를 사용하여 사용자의 이전 방문을 바탕으로 광고를 게재합니다. Google의 광고 쿠키 사용으로 Google 및 파트너는 본 사이트 및 인터넷의 다른 사이트 방문을 토대로 사용자에게 광고를 게재할 수 있습니다.</p>
+            <p>사용자는 광고 설정으로 이동하여 맞춤형 광고를 해제할 수 있습니다.</p>
+        </div>
     </div>
 
-    <div class="container smile-detector">
-        <h1>Smile Detector</h1>
-        <div class="upload-section">
-            <input type="file" id="image-upload" accept="image/*" style="display: none;">
-            <button id="upload-btn">Upload Image</button>
-        </div>
-        <div id="image-preview-container">
-            <img id="image-preview" src="#" alt="Preview" style="display: none; max-width: 100%; margin-top: 20px; border-radius: 8px;">
-        </div>
-        <div id="label-container" style="margin-top: 20px; font-weight: bold; font-size: 1.2rem;"></div>
-    </div>
-
-    <div class="container contact-section">
-        <h2>제휴 문의</h2>
-        <form action="https://formspree.io/f/xdaldzal" method="POST" class="contact-form">
-            <div class="form-group">
-                <input type="text" name="name" placeholder="이름 / 업체명" required>
-            </div>
-            <div class="form-group">
-                <input type="email" name="_replyto" placeholder="이메일 주소" required>
-            </div>
-            <div class="form-group">
-                <textarea name="message" placeholder="문의 내용" required></textarea>
-            </div>
-            <button type="submit" id="submit-btn">문의하기</button>
-        </form>
-    </div>
-
-    <div class="container">
-        <div id="disqus_thread"></div>
-        <script>
-            /**
-            *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
-            *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
-            /*
-            var disqus_config = function () {
-            this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
-            this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
-            };
-            */
-            (function() { // DON'T EDIT BELOW THIS LINE
-            var d = document, s = d.createElement('script');
-            s.src = 'https://umjunsik-01.disqus.com/embed.js';
-            s.setAttribute('data-timestamp', +new Date());
-            (d.head || d.body).appendChild(s);
-            })();
-        </script>
-        <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-    </div>
     <script src="main.js"></script>
 </body>
 </html>
